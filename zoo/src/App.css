@@ -1,0 +1,17 @@
+#renderCanvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  background-color: red;
+  height: 80px;
+  width: 80px;
+  position: relative;
+  z-index: 2;
+}
