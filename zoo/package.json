@@ -13,6 +13,7 @@
     "@babylonjs/loaders": "^7.1.0",
     "@babylonjs/materials": "^7.1.0",
     "@types/earcut": "^2.1.4",
+    "axios": "^1.6.8",
     "earcut": "^2.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
