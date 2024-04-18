@@ -19,7 +19,7 @@ const App = () => {
     // Crear la escena
     const createScene = () => {
       const scene = new BABYLON.Scene(engine);
-      Inspector.Show(scene, {});
+      // Inspector.Show(scene, {});
 
       // Crear una cámara
       const camera = new BABYLON.ArcRotateCamera(
@@ -648,7 +648,7 @@ axios.get("http://localhost:3000/getlanguages")
                     earcut
                   );
  
-                  text2.position = new BABYLON.Vector3(2, -130, 42);
+                  text2.position = new BABYLON.Vector3(2, -135, 42);
                   text2.rotation = new BABYLON.Vector3(-0.22, 0, 0);
                   text.position = new BABYLON.Vector3(2, -110, 42);
                   text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
@@ -793,7 +793,7 @@ axios.get("http://localhost:3000/getlanguages")
                 scene,
                 earcut
               );
-              text2.position = new BABYLON.Vector3(2, -130, 42);
+              text2.position = new BABYLON.Vector3(2, -135, 42);
               text2.rotation = new BABYLON.Vector3(-0.22, 0, 0);
               text.position = new BABYLON.Vector3(2, -110, 42);
               text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
