@@ -11,6 +11,10 @@ La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcion
 
 Actualmente se puede consultar en web y en las meta quest, aunque faltaría, además de desplegar el back, algun codigo referente a XR para que sea totalmente similar al funcionamiento en WEB.
 
+No pude avanzar mas en este proyecto porque lo comencé algo tarde pero me ha gustado explorar una nueva tecnologia de inmersivas WEB como lo es Babylon.js.
+De todas formas, me ha gustado mucho experimentar y creo que es una idea bastante original para un portfolio, aunque queda mucho por pulir e intentaré ir puliendo poco a poco en mis tiempos libres. 
+
+El objetivo final sería crear un boilerplate para que otras personas pudieran tener de guía o utilizarlo para enseñar sus trabajos.
 
 ## TODO
 - ✅ Mobile device.
@@ -25,7 +29,7 @@ Actualmente se puede consultar en web y en las meta quest, aunque faltaría, ade
 - ❌ Terminar los tests del back.
 - ❌ Atomic Design.
 - ❌ Formulario con e-mail.
-
+- ❌ Mayor interactividad, animaciones.
 ## Tecnologías Utilizadas
 
 - Vite React
@@ -36,6 +40,7 @@ Actualmente se puede consultar en web y en las meta quest, aunque faltaría, ade
 - Vitest
 - Mongoose
 - Cors
+- Javascript
 
 ## Instrucciones de Uso
 
@@ -50,7 +55,6 @@ Actualmente se puede consultar en web y en las meta quest, aunque faltaría, ade
 ![Captura de pantalla 1](zoo/public/2.png)
 ![Captura de pantalla 2](zoo/public/3.png)
 
-En estas capturas podemos ver que tiene un diseño responsive en ambas páginas del proyecto.
 
 ## Contribuciones
 
