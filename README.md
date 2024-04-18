@@ -31,6 +31,8 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ❌ Atomic Design.
 - ❌ Formulario con e-mail.
 - ❌ Mayor interactividad, animaciones.
+- ❌ Mejorar fondo, ya sea 360, skybox o panorámico.
+
 ## Tecnologías Utilizadas
 
 - Vite React
