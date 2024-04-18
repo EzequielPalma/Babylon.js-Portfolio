@@ -5,7 +5,7 @@
 
 # Portfolio inmersivo y descripción
 
-Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado.
+Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto.
 
 La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcionalidades que veremos mas adelante en el todo.
 
@@ -21,6 +21,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ✅ Apto para VR
 - ✅ Arc rotate camera y movimiento de la figura independientemente de la cámara.
 - ✅ Axios get al back.
+- ✅ Portfolio interactivo mediante clicks en las figuras.
 - ✅ Test del front con Cypress
 - ✅ Texto 3D.
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
