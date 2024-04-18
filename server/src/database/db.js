@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://cabezadearbol14:WS1oEKPCoizDZZKK@mern.00idlsz.mongodb.net/?retryWrites=true&w=majority&appName=mern")
-        console.log("Conectado a mongo!");
-
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            // Otros parámetros de configuración de conexión si es necesario
+          });
+        console.log("Conectado a MongoDB!");
     } catch (error) {
-        console.error("error:",error)
+        console.error("Error al conectar a MongoDB:", error);
     }
 }
-
