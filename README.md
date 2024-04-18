@@ -57,7 +57,7 @@ En estas capturas podemos ver que tiene un diseño responsive en ambas páginas 
 Las contribuciones son bienvenidas. Si encuentras algún error o tienes una mejora, ¡siéntete libre de abrir un problema o enviar un pull request!
 
 ## Estado del Proyecto
-![Mínimo producto viable](https://img.shields.io/badge/MVP-%20En-proceso-green)
+![Mínimo producto viable](https://img.shields.io/badge/MVP-%20En%20Desarrollo-green)
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
 
 ## Licencia
