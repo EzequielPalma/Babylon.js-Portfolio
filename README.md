@@ -1,11 +1,11 @@
-<img src="zoo/public/1.png" alt="Descripción de la imagen" width="400"/>
+<img src="client/public/1.png" alt="Descripción de la imagen" width="400"/>
 *Figura 1: Logo del proyecto*
 
 
 
 # Portfolio inmersivo y descripción
 
-Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto.
+Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto. Tambien tenemos un apartado de texto 3D que nos muestra frases que identificarían mi filosofía de programación. Esto tendría una finalidad de conocerme mas allá de lo que se técnicamente.
 
 La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcionalidades que veremos mas adelante en el todo.
 
@@ -27,12 +27,13 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
 - ❌ Que la figura gire en VR, ya que solo gira en WEB y en móvil.
 - ❌ Havok Physics engine.
-- ❌ Mejorar el diseño.
+- ❌ Mejorar el diseño y cuidar los textos, ajustarlos.
 - ❌ Terminar los tests del back.
 - ❌ Atomic Design.
 - ❌ Formulario con e-mail.
 - ❌ Mayor interactividad, animaciones.
 - ❌ Mejorar fondo, ya sea 360, skybox o panorámico.
+- ❌ Crear un apartado sobre el proyecto mismo del portafolio para ofrecer información sobre él.
 
 ## Tecnologías Utilizadas
 
@@ -56,10 +57,10 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](zoo/public/2.png)
-![Captura de pantalla 2](zoo/public/3.png)
-![Captura de pantalla 3](zoo/public/4.png)
-![Captura de pantalla 4](zoo/public/5.png)
+![Captura de pantalla 1](client/public/2.png)
+![Captura de pantalla 2](client/public/3.png)
+![Captura de pantalla 3](client/public/4.png)
+![Captura de pantalla 4](client/public/5.png)
 
 
 
