@@ -22,6 +22,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ✅ Arc rotate camera y movimiento de la figura independientemente de la cámara.
 - ✅ Axios get al back.
 - ✅ Test del front con Cypress
+- ✅ Texto 3D.
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
 - ❌ Que la figura gire en VR, ya que solo gira en WEB y en móvil.
 - ❌ Havok Physics engine.
