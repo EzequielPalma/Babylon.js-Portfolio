@@ -5,13 +5,13 @@
 
 # Portfolio inmersivo y descripción
 
-Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado.
+Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto.
 
 La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcionalidades que veremos mas adelante en el todo.
 
 Actualmente se puede consultar en web y en las meta quest, aunque faltaría, además de desplegar el back, algun codigo referente a XR para que sea totalmente similar al funcionamiento en WEB.
 
-No pude avanzar mas en este proyecto porque lo comencé algo tarde pero me ha gustado explorar una nueva tecnologia de inmersivas WEB como lo es Babylon.js.
+No pude avanzar mas en este proyecto porque lo comencé algo tarde, pero me ha gustado explorar una nueva tecnologia de inmersivas WEB como lo es Babylon.js.
 De todas formas, me ha gustado mucho experimentar y creo que es una idea bastante original para un portfolio, aunque queda mucho por pulir e intentaré ir puliendo poco a poco en mis tiempos libres. 
 
 El objetivo final sería crear un boilerplate para que otras personas pudieran tener de guía o utilizarlo para enseñar sus trabajos.
@@ -21,6 +21,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ✅ Apto para VR
 - ✅ Arc rotate camera y movimiento de la figura independientemente de la cámara.
 - ✅ Axios get al back.
+- ✅ Portfolio interactivo mediante clicks en las figuras.
 - ✅ Test del front con Cypress
 - ✅ Texto 3D.
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
@@ -31,6 +32,8 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ❌ Atomic Design.
 - ❌ Formulario con e-mail.
 - ❌ Mayor interactividad, animaciones.
+- ❌ Mejorar fondo, ya sea 360, skybox o panorámico.
+
 ## Tecnologías Utilizadas
 
 - Vite React
@@ -55,6 +58,9 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 
 ![Captura de pantalla 1](zoo/public/2.png)
 ![Captura de pantalla 2](zoo/public/3.png)
+![Captura de pantalla 2](zoo/public/4.png)
+![Captura de pantalla 2](zoo/public/5.png)
+
 
 
 ## Contribuciones
