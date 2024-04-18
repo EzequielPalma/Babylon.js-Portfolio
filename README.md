@@ -5,7 +5,7 @@
 
 # Portfolio inmersivo y descripción
 
-Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto.
+Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado. Cuando damos click en un proyecto o en una tecnología nos saldra una breve descripción o un link hacia ese proyecto. Tambien tenemos un apartado de texto 3D que nos muestra frases que identificarían mi filosofía de programación. Esto tendría una finalidad de conocerme mas allá de lo que se técnicamente.
 
 La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcionalidades que veremos mas adelante en el todo.
 
@@ -33,6 +33,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ❌ Formulario con e-mail.
 - ❌ Mayor interactividad, animaciones.
 - ❌ Mejorar fondo, ya sea 360, skybox o panorámico.
+- ❌ Crear un apartado sobre el proyecto mismo del portafolio para ofrecer información sobre él.
 
 ## Tecnologías Utilizadas
 
