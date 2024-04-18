@@ -24,7 +24,7 @@ Actualmente se puede consultar en web y en las meta quest, aunque faltaría, ade
 - ❌ Mejorar el diseño.
 - ❌ Terminar los tests del back.
 - ❌ Atomic Design.
-
+- ❌ Formulario con e-mail.
 
 ## Tecnologías Utilizadas
 
@@ -47,8 +47,8 @@ Actualmente se puede consultar en web y en las meta quest, aunque faltaría, ade
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](public/2.png)
-![Captura de pantalla 2](public/3.png)
+![Captura de pantalla 1](zoo/public/2.png)
+![Captura de pantalla 2](zoo/public/3.png)
 
 En estas capturas podemos ver que tiene un diseño responsive en ambas páginas del proyecto.
 
@@ -57,7 +57,7 @@ En estas capturas podemos ver que tiene un diseño responsive en ambas páginas 
 Las contribuciones son bienvenidas. Si encuentras algún error o tienes una mejora, ¡siéntete libre de abrir un problema o enviar un pull request!
 
 ## Estado del Proyecto
-![Mínimo producto viable](https://img.shields.io/badge/MVP-%2050%-green)
+![Mínimo producto viable](https://img.shields.io/badge/MVP-%20En-proceso-green)
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
 
 ## Licencia
