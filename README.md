@@ -25,6 +25,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ✅ Portfolio interactivo mediante clicks en las figuras.
 - ✅ Test del front con Cypress
 - ✅ Texto 3D.
+- ✅ Sistema de partículas.
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
 - ❌ Que la figura gire en VR, ya que solo gira en WEB y en móvil.
 - ❌ Havok Physics engine.
