@@ -27,7 +27,7 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 - ❌ Cambiar la cámara a la VR Arc Rotate Camera.
 - ❌ Que la figura gire en VR, ya que solo gira en WEB y en móvil.
 - ❌ Havok Physics engine.
-- ❌ Mejorar el diseño.
+- ❌ Mejorar el diseño y cuidar los textos, ajustarlos.
 - ❌ Terminar los tests del back.
 - ❌ Atomic Design.
 - ❌ Formulario con e-mail.
