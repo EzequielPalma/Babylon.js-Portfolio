@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import * as BABYLON from "@babylonjs/core";
 import "./App.css";
 import "@babylonjs/loaders/glTF";
-// import { Inspector } from "@babylonjs/inspector";
+import { Inspector } from "@babylonjs/inspector";
 import earcut from "earcut";
 import "@babylonjs/materials";
 import axios from "axios";
@@ -16,13 +16,13 @@ const App = () => {
     const engine = new BABYLON.Engine(canvas, true);
     const createScene = () => {
       const scene = new BABYLON.Scene(engine);
-      // Inspector.Show(scene, {});
+      Inspector.Show(scene, {});
 
       const camera = new BABYLON.ArcRotateCamera(
         "camera",
-        4.6882, 
-        1.6716, 
-        433.3218, 
+        4.6882,
+        1.6716,
+        433.3218,
         BABYLON.Vector3.Zero(),
         scene
       );
@@ -31,7 +31,7 @@ const App = () => {
       const light = new BABYLON.HemisphericLight(
         "light",
         new BABYLON.Vector3(0, 1, 0),
-        scene        
+        scene
       );
 
       const redLight = new BABYLON.PointLight(
@@ -39,15 +39,15 @@ const App = () => {
         new BABYLON.Vector3(10, 10, 10),
         scene
       );
-      redLight.diffuse = new BABYLON.Color3(1, 0, 0); // Color rojo
-      redLight.specular = new BABYLON.Color3(1, 0, 0); // Color rojo
-      redLight.intensity = 0.6;
+      redLight.diffuse = new BABYLON.Color3(0.5, 0.5, 1); // Color rojo
+      redLight.specular = new BABYLON.Color3(0.5, 0.5, 1); // Color rojo
+      redLight.intensity = 1.2;
       // Color del material y esfera
       const materialLight = new BABYLON.StandardMaterial("", scene);
-materialLight.diffuseColor = new BABYLON.Color3(1, 0, 0);
+      materialLight.diffuseColor = new BABYLON.Color3(0.5, 0.5, 1);
 
-      const sphere = BABYLON.Mesh.CreateSphere("Sphere", 16, 10, scene);
-      sphere.material = materialLight;
+      // const sphere = BABYLON.Mesh.CreateSphere("Sphere", 16, 10, scene);
+      // sphere.material = materialLight;
 
       // Animación
       // let alpha = 0;
@@ -63,49 +63,57 @@ materialLight.diffuseColor = new BABYLON.Color3(1, 0, 0);
       // scene.clearColor = new BABYLON.Color3(0.673, 1.302, 0.702); // Darker gray background
       // // scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Color transparente para permitir que se muestre el gradiente
 
-    //   var dome = new BABYLON.PhotoDome(
-    //     "testdome",
-    //     "./textures/starts.jpg",
-    //     {
-    //         resolution: 64,
-    //         size: 1500
-    //     },
-    //     scene
-    // );
+      //   var dome = new BABYLON.PhotoDome(
+      //     "testdome",
+      //     "./textures/starts.jpg",
+      //     {
+      //         resolution: 64,
+      //         size: 1500
+      //     },
+      //     scene
+      // );
 
-    // var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
-    // var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
-    // skyboxMaterial.backFaceCulling = false;
-    // skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
-    // skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-    // skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    // skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-    // skybox.material = skyboxMaterial;			
+      // var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
+      // var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+      // skyboxMaterial.backFaceCulling = false;
+      // skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+      // skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+      // skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+      // skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+      // skybox.material = skyboxMaterial;
 
-    async function createSkyboxAsync(scene) {
-      return new Promise((resolve, reject) => {
+      async function createSkyboxAsync(scene) {
+        return new Promise((resolve, reject) => {
           try {
-              var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 1000.0 }, scene);
-              var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
-              skyboxMaterial.backFaceCulling = false;
-              skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
-              skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-              skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-              skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-              skybox.material = skyboxMaterial;
-              resolve(skybox);
+            var skybox = BABYLON.MeshBuilder.CreateBox(
+              "skyBox",
+              { size: 1500.0 },
+              scene
+            );
+            var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+            skyboxMaterial.backFaceCulling = false;
+            skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture(
+              "textures/skybox",
+              scene
+            );
+            skyboxMaterial.reflectionTexture.coordinatesMode =
+              BABYLON.Texture.SKYBOX_MODE;
+            skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+            skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+            skybox.material = skyboxMaterial;
+            resolve(skybox);
           } catch (error) {
-              reject(error);
+            reject(error);
           }
-      });
-  }
+        });
+      }
 
-  createSkyboxAsync(scene) 
+      createSkyboxAsync(scene);
 
       const material = new BABYLON.StandardMaterial("material", scene);
       material.diffuseColor = new BABYLON.Color3(1, 1, 1); // Color del material
       material.alpha = 0.5; // Opacidad del material
-      material.emissiveColor = new BABYLON.Color3(1, 0, 0); // Color de emisión del material
+      material.emissiveColor = new BABYLON.Color3(0.5, 0.5, 1); // Color de emisión del material
       material.specularColor = new BABYLON.Color3(0, 0, 0); // Color especular del material
       material.backFaceCulling = true; // No ocultar las caras traseras del material
       material.wireframe = false; // Mostrar el dodecaedro en modo alámbrico
@@ -223,31 +231,43 @@ materialLight.diffuseColor = new BABYLON.Color3(1, 0, 0);
 
       tetra.material = material;
 
-      
-let rotating = false;
-let rightDir = new BABYLON.Vector3();
-let upDir = new BABYLON.Vector3();
-const sensitivity = 0.005;
+      let rotating = false;
+      let rightDir = new BABYLON.Vector3();
+      let upDir = new BABYLON.Vector3();
+      const sensitivity = 0.005;
 
-scene.onPointerObservable.add((pointerInfo) => {
-    if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
-        if (pointerInfo.pickInfo.pickedMesh === tetra) {
+      scene.onPointerObservable.add((pointerInfo) => {
+        if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
+          if (pointerInfo.pickInfo.pickedMesh === tetra) {
             rotating = true;
             scene.activeCamera.detachControl();
+          }
+        } else if (
+          pointerInfo.type === BABYLON.PointerEventTypes.POINTERUP &&
+          rotating
+        ) {
+          rotating = false;
+          scene.activeCamera.attachControl();
+        } else if (
+          pointerInfo.type === BABYLON.PointerEventTypes.POINTERMOVE &&
+          rotating
+        ) {
+          const matrix = scene.activeCamera.getWorldMatrix();
+          rightDir.copyFromFloats(matrix.m[0], matrix.m[1], matrix.m[2]);
+          upDir.copyFromFloats(matrix.m[4], matrix.m[5], matrix.m[6]);
+
+          tetra.rotateAround(
+            tetra.position,
+            rightDir,
+            pointerInfo.event.movementY * -1 * sensitivity
+          );
+          tetra.rotateAround(
+            tetra.position,
+            upDir,
+            pointerInfo.event.movementX * -1 * sensitivity
+          );
         }
-    } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERUP && rotating) {
-        rotating = false;
-        scene.activeCamera.attachControl();
-    } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERMOVE && rotating) {
-        const matrix = scene.activeCamera.getWorldMatrix();
-        rightDir.copyFromFloats(matrix.m[0], matrix.m[1], matrix.m[2]);
-        upDir.copyFromFloats(matrix.m[4], matrix.m[5], matrix.m[6]);
-
-        tetra.rotateAround(tetra.position, rightDir, pointerInfo.event.movementY * -1 * sensitivity);
-        tetra.rotateAround(tetra.position, upDir, pointerInfo.event.movementX * -1 * sensitivity);
-    }
-});
-
+      });
 
       for (let i = 0; i < Tetrah.face.length; i++) {
         // Obtener los vértices de la cara actual
@@ -300,9 +320,9 @@ scene.onPointerObservable.add((pointerInfo) => {
         cylinder.parent = tetra;
         cylinder.isPickable = true;
 
-      //   cylinder.onPointerEnterObservable.add(function(ev, state){
-      //     console.log("holaaa");
-      //  })
+        //   cylinder.onPointerEnterObservable.add(function(ev, state){
+        //     console.log("holaaa");
+        //  })
 
         // cylinder.onPointerOut = function () {
         //   // Restaurar el diámetro al salir del hover
@@ -335,7 +355,7 @@ scene.onPointerObservable.add((pointerInfo) => {
         const normal = BABYLON.Vector3.Cross(v1, v2).normalize();
 
         // Multiplicar la normal por un factor para extenderla desde el centro de la cara
-        const radius = 234; // Radio del cilindro
+        const radius = 288; // Radio del cilindro
         const position = center.subtract(normal.scale(radius)); // Resta en lugar de sumar
         const distanceToCenter = position.subtract(center).length(); // Distancia al centro
         const newPosition = center.add(
@@ -359,505 +379,681 @@ scene.onPointerObservable.add((pointerInfo) => {
         ); // Cambiar el signo de la rotación
 
         blockCode.parent = tetra;
-
-        
       }
 
-      axios.get("http://localhost:3000/getcodeblocks")
-      .then(async (response) => {
-        // Verificar si la solicitud fue exitosa
-        if (response.status === 200) {
-          // Obtener los datos de las imágenes
-          const images = response.data;
-    
-          // Iterar sobre las imágenes y asignarlas como texturas a los bloques de código
-          for (let i = 0; i < images.length; i++) {
-            const imageUrl = images[i]; // Obtener la URL de la imagen
-            const texture = new BABYLON.Texture(imageUrl, scene); // Crear la textura desde la URL
-            const material = new BABYLON.StandardMaterial("material_" + i, scene); // Crear un material
-            material.diffuseTexture = texture; // Asignar la textura al material
-    
-            // Obtener el bloque de código por su nombre
-            const blockCode = scene.getMeshByName("blockCode_" + i);
-    
-            // Asignar el material al bloque de código
-            if (blockCode) {
-              blockCode.material = material;
+      axios
+        .get("http://localhost:3000/getcodeblocks")
+        .then(async (response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Obtener los datos de las imágenes
+            const images = response.data;
+
+            // Iterar sobre las imágenes y asignarlas como texturas a los bloques de código
+            for (let i = 0; i < images.length; i++) {
+              const imageUrl = images[i]; // Obtener la URL de la imagen
+              const texture = new BABYLON.Texture(imageUrl, scene); // Crear la textura desde la URL
+              const material = new BABYLON.StandardMaterial(
+                "material_" + i,
+                scene
+              ); // Crear un material
+              material.diffuseTexture = texture; // Asignar la textura al material
+
+              // Obtener el bloque de código por su nombre
+              const blockCode = scene.getMeshByName("blockCode_" + i);
+
+              // Asignar el material al bloque de código
+              if (blockCode) {
+                blockCode.material = material;
+              }
             }
+          } else {
+            console.error(
+              "Error al obtener los datos de las imágenes:",
+              response.statusText
+            );
           }
-        } else {
-          console.error("Error al obtener los datos de las imágenes:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud de las imágenes:", error);
-      });
-      axios.get("http://localhost:3000/getcodeblocks")
-  .then(async (response) => {
-    // Verificar si la solicitud fue exitosa
-    if (response.status === 200) {
-      // Obtener los datos de las imágenes
-      const imagesData = response.data;
+        })
+        .catch((error) => {
+          console.error(
+            "Error al realizar la solicitud de las imágenes:",
+            error
+          );
+        });
+      axios
+        .get("http://localhost:3000/getcodeblocks")
+        .then(async (response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Obtener los datos de las imágenes
+            const imagesData = response.data;
 
-      // Iterar sobre los datos de las imágenes y asignarlas como texturas a los bloques de código
-      imagesData.forEach(async (imageData, index) => {
-        const imageUrl = imageData.image; // Obtener la URL de la imagen
-        const texture = new BABYLON.Texture(imageUrl, scene); // Crear la textura desde la URL
-        const material = new BABYLON.StandardMaterial("material_" + index, scene); // Crear un material
-        material.diffuseTexture = texture; // Asignar la textura al material
+            // Iterar sobre los datos de las imágenes y asignarlas como texturas a los bloques de código
+            imagesData.forEach(async (imageData, index) => {
+              const imageUrl = imageData.image; // Obtener la URL de la imagen
+              const texture = new BABYLON.Texture(imageUrl, scene); // Crear la textura desde la URL
+              const material = new BABYLON.StandardMaterial(
+                "material_" + index,
+                scene
+              ); // Crear un material
+              material.diffuseTexture = texture; // Asignar la textura al material
 
-        // Obtener el bloque de código por su nombre
-        const blockCode = scene.getMeshByName("blockCode_" + index);
+              // Obtener el bloque de código por su nombre
+              const blockCode = scene.getMeshByName("blockCode_" + index);
 
-        // Asignar el material al bloque de código
-        if (blockCode) {
-          blockCode.material = material;
-        }
-      });
-    } else {
-      console.error("Error al obtener los datos de las imágenes:", response.statusText);
-    }
-  })
-  .catch((error) => {
-    console.error("Error al realizar la solicitud de las imágenes:", error);
-  });
+              // Asignar el material al bloque de código
+              if (blockCode) {
+                blockCode.material = material;
+              }
+            });
+          } else {
+            console.error(
+              "Error al obtener los datos de las imágenes:",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "Error al realizar la solicitud de las imágenes:",
+            error
+          );
+        });
 
-      axios.get("http://localhost:3000/getlanguages")
-      .then((response) => {
-        // Verificar si la solicitud fue exitosa
-        if (response.status === 200) {
-          // Extraer los datos de la respuesta
-          const languages = response.data;
-    
-          // Definir los nombres de los cilindros
-          const cylinderNames = ["cylinder_11", "cylinder_29", "cylinder_9", "cylinder_27", "cylinder_10", "cylinder_30", "cylinder_31"];
-    
-          // Iterar sobre los nombres de los cilindros,
-          cylinderNames.forEach((cylinderName, index) => {
-            // Obtener la URL de la imagen correspondiente al índice actual
-            const imageUrl = languages[index].image;
-    
-            // Crear una textura utilizando la URL de la imagen
-            const texture = new BABYLON.Texture(imageUrl, scene);
-    
-            // Crear un material con la textura
-            const material = new BABYLON.StandardMaterial(`languageMaterial_${index}`, scene);
-            material.diffuseTexture = texture;
-    
-            // Obtener el objeto cilindro por su nombre
-            const object = scene.getMeshByName(cylinderName);
-    
-            // Aplicar el material al objeto cilindro
-            object.material = material;
-          });
-        } else {
-          console.error("Error al obtener los datos:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud:", error);
-      });
+      axios
+        .get("http://localhost:3000/getlanguages")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const languages = response.data;
 
+            // Definir los nombres de los cilindros
+            const cylinderNames = [
+              "cylinder_11",
+              "cylinder_29",
+              "cylinder_9",
+              "cylinder_27",
+              "cylinder_10",
+              "cylinder_30",
+              "cylinder_31",
+            ];
 
-      
+            // Iterar sobre los nombres de los cilindros,
+            cylinderNames.forEach((cylinderName, index) => {
+              // Obtener la URL de la imagen correspondiente al índice actual
+              const imageUrl = languages[index].image;
+
+              // Crear una textura utilizando la URL de la imagen
+              const texture = new BABYLON.Texture(imageUrl, scene);
+
+              // Crear un material con la textura
+              const material = new BABYLON.StandardMaterial(
+                `languageMaterial_${index}`,
+                scene
+              );
+              material.diffuseTexture = texture;
+
+              // Obtener el objeto cilindro por su nombre
+              const object = scene.getMeshByName(cylinderName);
+
+              // Aplicar el material al objeto cilindro
+              object.material = material;
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+
       let currentText;
       let currentLink;
 
-axios.get("http://localhost:3000/getlanguages")
-  .then((response) => {
-    // Verificar si la solicitud fue exitosa
-    if (response.status === 200) {
-      // Extraer los datos de la respuesta
-      const languages = response.data;
-      
-      // Definir los nombres de los cilindros
-      const cylinderNames = ["cylinder_11", "cylinder_29", "cylinder_9", "cylinder_27", "cylinder_10", "cylinder_30", "cylinder_31"];
-      
-      // Iterar sobre los nombres de los cilindros
-      cylinderNames.forEach(async (cylinderName, index) => {
-        // Obtener la descripción correspondiente al índice actual
-        const description = languages[index].description;
-        
-        // Obtener el objeto cilindro por su nombre
-        const cylinder = scene.getMeshByName(cylinderName);
-        
-        // Agregar un evento de clic al cilindro
-        cylinder.actionManager = new BABYLON.ActionManager(scene);
-        cylinder.actionManager.registerAction(
-          new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, async () => {
-            // Imprimir la descripción en la consola cuando se hace clic en el cilindro
-            
-            try {
-              const fontResponse = await fetch("./fonts/kenney.json");
-              if (!fontResponse.ok) {
-                throw new Error("Error al cargar el archivo JSON");
-              }
-              const fontData = await fontResponse.json();
-              
-              // Eliminar el texto actual si existe
-              if (currentText ) {
-                currentText.dispose();
-              }
-              if (currentLink) {
-                currentLink.dispose();
-                currentLink = null; // También es importante establecer currentLink como null
-              }
-          
-              // Crear el texto con la descripción seleccionada
-              const text = BABYLON.MeshBuilder.CreateText(
-                "LanguagesDesc",
-                description,
-                fontData,
-                {
-                  size: 14,
-                  resolution: 256,
-                  depth: 5,
-                },
-                scene,
-                earcut
+      axios
+        .get("http://localhost:3000/getlanguages")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const languages = response.data;
+
+            // Definir los nombres de los cilindros
+            const cylinderNames = [
+              "cylinder_11",
+              "cylinder_29",
+              "cylinder_9",
+              "cylinder_27",
+              "cylinder_10",
+              "cylinder_30",
+              "cylinder_31",
+            ];
+
+            // Iterar sobre los nombres de los cilindros
+            cylinderNames.forEach(async (cylinderName, index) => {
+              // Obtener la descripción correspondiente al índice actual
+              const description = languages[index].description;
+
+              // Obtener el objeto cilindro por su nombre
+              const cylinder = scene.getMeshByName(cylinderName);
+
+              // Agregar un evento de clic al cilindro
+              cylinder.actionManager = new BABYLON.ActionManager(scene);
+              cylinder.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                  BABYLON.ActionManager.OnPickTrigger,
+                  async () => {
+                    // Imprimir la descripción en la consola cuando se hace clic en el cilindro
+
+                    try {
+                      const fontResponse = await fetch("./fonts/kenney.json");
+                      if (!fontResponse.ok) {
+                        throw new Error("Error al cargar el archivo JSON");
+                      }
+                      const fontData = await fontResponse.json();
+
+                      // Eliminar el texto actual si existe
+                      if (currentText) {
+                        currentText.dispose();
+                      }
+                      if (currentLink) {
+                        currentLink.dispose();
+                        currentLink = null; // También es importante establecer currentLink como null
+                      }
+
+                      // Crear el texto con la descripción seleccionada
+                      const text = BABYLON.MeshBuilder.CreateText(
+                        "LanguagesDesc",
+                        description,
+                        fontData,
+                        {
+                          size: 14,
+                          resolution: 256,
+                          depth: 5,
+                        },
+                        scene,
+                        earcut
+                      );
+                      text.position = new BABYLON.Vector3(2, -110, -55);
+                      text.rotation = new BABYLON.Vector3(0.22, 0, 0);
+                      const redMaterial = new BABYLON.StandardMaterial(
+                        "redMaterial",
+                        scene
+                      );
+                      redMaterial.diffuseColor = new BABYLON.Color3(
+                        0.5,
+                        0.5,
+                        1
+                      );
+                      text.material = redMaterial;
+
+                      // Asignar el nuevo texto a la variable currentText
+                      currentText = text;
+                    } catch (error) {
+                      console.error("Error:", error);
+                    }
+                  }
+                )
               );
-              text.position = new BABYLON.Vector3(2, -110, 42);
-              text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-              const redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
-              redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
-              text.material = redMaterial;
-              
-              // Asignar el nuevo texto a la variable currentText
-              currentText = text;
-             
-            } catch (error) {
-              console.error("Error:", error);
-            }
-          })
-        );
-      });
-    } else {
-      console.error("Error al obtener los datos:", response.statusText);
-    }
-  })
-  .catch((error) => {
-    console.error("Error al realizar la solicitud:", error);
-  });
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
 
+      axios
+        .get("http://localhost:3000/getcontacts")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const contacts = response.data;
 
+            // Definir los nombres de los cilindros
+            const cylinderNames = [
+              "cylinder_22",
+              "cylinder_7",
+              "cylinder_20",
+              "cylinder_18",
+              "cylinder_1",
+            ];
 
-      axios.get("http://localhost:3000/getcontacts")
-      .then((response) => {
-        // Verificar si la solicitud fue exitosa
-        if (response.status === 200) {
-          // Extraer los datos de la respuesta
-          const contacts = response.data;
-    
-          // Definir los nombres de los cilindros
-          const cylinderNames = ["cylinder_22", "cylinder_7", "cylinder_20", "cylinder_18", "cylinder_1"];
-    
-          // Iterar sobre los nombres de los cilindros
-          cylinderNames.forEach((cylinderName, index) => {
-            // Obtener la URL de la imagen correspondiente al índice actual
-            const imageUrl = contacts[index].image;
-    
-            // Crear una textura utilizando la URL de la imagen
-            const texture = new BABYLON.Texture(imageUrl, scene);
-    
-            // Crear un material con la textura
-            const material = new BABYLON.StandardMaterial(`contactMaterial_${index}`, scene);
-            material.diffuseTexture = texture;
-    
-            // Obtener el objeto cilindro por su nombre
-            const object = scene.getMeshByName(cylinderName);
-    
-            // Aplicar el material al objeto cilindro
-            object.material = material;
-          });
-        } else {
-          console.error("Error al obtener los datos:", response.statusText);
+            // Iterar sobre los nombres de los cilindros
+            cylinderNames.forEach((cylinderName, index) => {
+              // Obtener la URL de la imagen correspondiente al índice actual
+              const imageUrl = contacts[index].image;
+
+              // Crear una textura utilizando la URL de la imagen
+              const texture = new BABYLON.Texture(imageUrl, scene);
+
+              // Crear un material con la textura
+              const material = new BABYLON.StandardMaterial(
+                `contactMaterial_${index}`,
+                scene
+              );
+              material.diffuseTexture = texture;
+
+              // Obtener el objeto cilindro por su nombre
+              const object = scene.getMeshByName(cylinderName);
+
+              // Aplicar el material al objeto cilindro
+              object.material = material;
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+
+      axios
+        .get("http://localhost:3000/getcontacts")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const contacts = response.data;
+
+            // Definir los nombres de los cilindros
+            const cylinderNames = [
+              "cylinder_22",
+              "cylinder_7",
+              "cylinder_20",
+              "cylinder_18",
+              "cylinder_1",
+            ];
+
+            // Iterar sobre los nombres de los cilindros
+            cylinderNames.forEach((cylinderName, index) => {
+              // Obtener la URL correspondiente al índice actual
+              const url = contacts[index].url;
+
+              // Obtener la descripción correspondiente al índice actual
+              const description = contacts[index].description;
+
+              // Obtener el objeto cilindro por su nombre
+              const cylinder = scene.getMeshByName(cylinderName);
+
+              // Agregar un evento de clic al cilindro
+              cylinder.actionManager = new BABYLON.ActionManager(scene);
+              cylinder.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                  BABYLON.ActionManager.OnPickTrigger,
+                  async () => {
+                    try {
+                      const fontResponse = await fetch("./fonts/kenney.json");
+                      if (!fontResponse.ok) {
+                        throw new Error("Error al cargar el archivo JSON");
+                      }
+                      const fontData = await fontResponse.json();
+
+                      // Eliminar el texto actual si existe
+                      if (currentText) {
+                        currentText.dispose();
+                      }
+
+                      // Crear el texto con la descripción seleccionada
+                      const text = BABYLON.MeshBuilder.CreateText(
+                        "ContactsDesc",
+                        description,
+                        fontData,
+                        {
+                          size: 14,
+                          resolution: 256,
+                          depth: 5,
+                        },
+                        scene,
+                        earcut
+                      );
+                      const text2 = BABYLON.MeshBuilder.CreateText(
+                        "ContactsLink",
+                        "¡Haz click!",
+                        fontData,
+                        {
+                          size: 14,
+                          resolution: 256,
+                          depth: 5,
+                        },
+                        scene,
+                        earcut
+                      );
+
+                      text2.position = new BABYLON.Vector3(2, -135, -55);
+                      text2.rotation = new BABYLON.Vector3(0.22, 0, 0);
+                      text.position = new BABYLON.Vector3(2, -110, -55);
+                      text.rotation = new BABYLON.Vector3(0.22, 0, 0);
+                      const redMaterial = new BABYLON.StandardMaterial(
+                        "redMaterial",
+                        scene
+                      );
+                      redMaterial.diffuseColor = new BABYLON.Color3(
+                        0.5,
+                        0.5,
+                        1
+                      );
+                      text.material = redMaterial;
+                      text2.material = redMaterial;
+
+                      if (currentLink) {
+                        currentLink.dispose();
+                      }
+                      // Asignar el nuevo texto a la variable currentText
+                      currentText = text;
+                      currentLink = text2;
+
+                      // Agregar un evento de clic al texto2 para abrir la URL
+                      text2.actionManager = new BABYLON.ActionManager(scene);
+                      text2.actionManager.registerAction(
+                        new BABYLON.ExecuteCodeAction(
+                          BABYLON.ActionManager.OnPickTrigger,
+                          () => {
+                            window.open(url, "_blank");
+                          }
+                        )
+                      );
+
+                      text.actionManager = new BABYLON.ActionManager(scene);
+                      text.actionManager.registerAction(
+                        new BABYLON.ExecuteCodeAction(
+                          BABYLON.ActionManager.OnPickTrigger,
+                          () => {
+                            window.open(url, "_blank");
+                          }
+                        )
+                      );
+                    } catch (error) {
+                      console.error("Error:", error);
+                    }
+                  }
+                )
+              );
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+
+      axios
+        .get("http://localhost:3000/getworks")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const works = response.data;
+
+            // Definir los nombres de los cilindros
+            const cylinderNames = ["cylinder_4", "cylinder_23", "cylinder_16"];
+
+            // Iterar sobre los nombres de los cilindros
+            cylinderNames.forEach((cylinderName, index) => {
+              // Obtener la URL de la imagen correspondiente al índice actual
+              const imageUrl = works[index].image;
+
+              // Crear una textura utilizando la URL de la imagen
+              const texture = new BABYLON.Texture(imageUrl, scene);
+
+              // Crear un material con la textura
+              const material = new BABYLON.StandardMaterial(
+                `workMaterial_${index}`,
+                scene
+              );
+              material.diffuseTexture = texture;
+
+              // Obtener el objeto cilindro por su nombre
+              const object = scene.getMeshByName(cylinderName);
+
+              // Aplicar el material al objeto cilindro
+              object.material = material;
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+
+      axios
+        .get("http://localhost:3000/getworks")
+        .then((response) => {
+          // Verificar si la solicitud fue exitosa
+          if (response.status === 200) {
+            // Extraer los datos de la respuesta
+            const works = response.data;
+
+            // Definir los nombres de los cilindros
+            const cylinderNames = ["cylinder_4", "cylinder_23", "cylinder_16"];
+
+            // Iterar sobre los nombres de los cilindros
+            cylinderNames.forEach((cylinderName, index) => {
+              // Obtener la URL correspondiente al índice actual
+              const url = works[index].url;
+
+              // Obtener la descripción correspondiente al índice actual
+              const description = works[index].description;
+
+              // Obtener el objeto cilindro por su nombre
+              const cylinder = scene.getMeshByName(cylinderName);
+
+              // Agregar un evento de clic al cilindro
+              cylinder.actionManager = new BABYLON.ActionManager(scene);
+              cylinder.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                  BABYLON.ActionManager.OnPickTrigger,
+                  async () => {
+                    try {
+                      const fontResponse = await fetch("./fonts/kenney.json");
+                      if (!fontResponse.ok) {
+                        throw new Error("Error al cargar el archivo JSON");
+                      }
+                      const fontData = await fontResponse.json();
+
+                      // Eliminar el texto actual si existe
+                      if (currentText) {
+                        currentText.dispose();
+                      }
+
+                      // Crear el texto con la descripción seleccionada
+                      const text = BABYLON.MeshBuilder.CreateText(
+                        "WorksDesc",
+                        description,
+                        fontData,
+                        {
+                          size: 14,
+                          resolution: 256,
+                          depth: 5,
+                        },
+                        scene,
+                        earcut
+                      );
+                      const text2 = BABYLON.MeshBuilder.CreateText(
+                        "WorksLink",
+                        "¡Ven conmigo!",
+                        fontData,
+                        {
+                          size: 14,
+                          resolution: 256,
+                          depth: 5,
+                        },
+                        scene,
+                        earcut
+                      );
+                      text2.position = new BABYLON.Vector3(2, -135, -55);
+                      text2.rotation = new BABYLON.Vector3(0.22, 0, 0);
+                      text.position = new BABYLON.Vector3(2, -110, -55);
+                      text.rotation = new BABYLON.Vector3(0.22, 0, 0);
+                      const redMaterial = new BABYLON.StandardMaterial(
+                        "redMaterial",
+                        scene
+                      );
+                      redMaterial.diffuseColor = new BABYLON.Color3(
+                        0.5,
+                        0.5,
+                        1
+                      );
+                      text.material = redMaterial;
+                      text2.material = redMaterial;
+
+                      if (currentLink) {
+                        currentLink.dispose();
+                      }
+                      // Asignar el nuevo texto a la variable currentText
+                      currentText = text;
+                      currentLink = text2;
+
+                      // Agregar un evento de clic al texto2 para abrir la URL
+                      text2.actionManager = new BABYLON.ActionManager(scene);
+                      text2.actionManager.registerAction(
+                        new BABYLON.ExecuteCodeAction(
+                          BABYLON.ActionManager.OnPickTrigger,
+                          () => {
+                            window.open(url, "_blank");
+                          }
+                        )
+                      );
+
+                      text.actionManager = new BABYLON.ActionManager(scene);
+                      text.actionManager.registerAction(
+                        new BABYLON.ExecuteCodeAction(
+                          BABYLON.ActionManager.OnPickTrigger,
+                          () => {
+                            window.open(url, "_blank");
+                          }
+                        )
+                      );
+                    } catch (error) {
+                      console.error("Error:", error);
+                    }
+                  }
+                )
+              );
+            });
+          } else {
+            console.error("Error al obtener los datos:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+
+      //  // Create a particle system
+      //  const particleSystem = new BABYLON.ParticleSystem("particles", 1000);
+
+      //  //Texture of each particlep
+      //  particleSystem.particleTexture = new BABYLON.Texture("textures/tech.jpg");
+
+      //  // Position where the particles are emiited from
+      //  particleSystem.emitter = new BABYLON.Vector3(0, 0, 0);
+      //  particleSystem.capacity = 8000;
+      //  particleSystem.minSize = 10;
+      //  particleSystem.maxSize = 22;
+
+      //     particleSystem.start();
+
+      // Emitters
+      var emitter0 = BABYLON.Mesh.CreateBox("emitter0", 0.1, scene);
+      emitter0.isVisible = false;
+
+      // Custom shader for particles
+      BABYLON.Effect.ShadersStore["myParticleFragmentShader"] =
+        "#ifdef GL_ES\n" +
+        "precision highp float;\n" +
+        "#endif\n" +
+        "varying vec2 vUV;\n" + // Provided by babylon.js
+        "varying vec4 vColor;\n" + // Provided by babylon.js
+        "uniform sampler2D diffuseSampler;\n" + // Provided by babylon.js
+        "uniform float time;\n" + // This one is custom so we need to declare it to the effect
+        "void main(void) {\n" +
+        "vec2 position = vUV;\n" +
+        "float color = 0.0;\n" +
+        "vec2 center = vec2(0.5, 0.5);\n" +
+        "color = sin(distance(position, center) * 10.0+ time * vColor.g);\n" +
+        "vec4 baseColor = texture2D(diffuseSampler, vUV);\n" +
+        "gl_FragColor = baseColor * vColor * vec4( vec3(color, color, color), 1.0 );\n" +
+        "}\n" +
+        "";
+
+      // Effect
+      var effect = engine.createEffectForParticles("myParticle", ["time"]);
+
+      // Particles
+      var particleSystem = new BABYLON.ParticleSystem(
+        "particles",
+        4000,
+        scene,
+        effect
+      );
+      particleSystem.particleTexture = new BABYLON.Texture(
+        "textures/Flare2.png",
+        scene
+      );
+      particleSystem.minSize = 10;
+      particleSystem.maxSize = 100.0;
+      particleSystem.minLifeTime = 0.5;
+      particleSystem.maxLifeTime = 5.0;
+      particleSystem.minEmitPower = 0.5;
+      particleSystem.maxEmitPower = 3.0;
+      particleSystem.emitter = emitter0;
+      particleSystem.emitRate = 12;
+      particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+      particleSystem.direction1 = new BABYLON.Vector3(-1, 1, -1);
+      particleSystem.direction2 = new BABYLON.Vector3(1, 1, 1);
+      particleSystem.color1 = new BABYLON.Color4(0.5, 0, 1, 1); // Cambiado a púrpura (RGB: 128, 0, 128)
+      particleSystem.color2 = new BABYLON.Color4(0.25, 0, 0.5, 1);
+      particleSystem.gravity = new BABYLON.Vector3(22, 55, 11);
+      particleSystem.minScaleX = 5; // Escala mínima en la dimensión x
+particleSystem.maxScaleX = 5; // Escala máxima en la dimensión x
+particleSystem.minScaleY = 5; // Escala mínima en la dimensión y
+particleSystem.maxScaleY = 5; // Escala máxima en la dimensión y
+      particleSystem.start();
+
+      var time = 0;
+      var order = 0.1;
+
+      effect.onBind = function () {
+        effect.setFloat("time", time);
+
+        time += order;
+
+        if (time > 100 || time < 0) {
+          order *= -1;
         }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud:", error);
-      });
-
-
-      axios.get("http://localhost:3000/getcontacts")
-      .then((response) => {
-        // Verificar si la solicitud fue exitosa
-        if (response.status === 200) {
-          // Extraer los datos de la respuesta
-          const contacts = response.data;
-    
-          // Definir los nombres de los cilindros
-          const cylinderNames = ["cylinder_22", "cylinder_7", "cylinder_20", "cylinder_18", "cylinder_1"];
-    
-          
-    
-          // Iterar sobre los nombres de los cilindros
-          cylinderNames.forEach((cylinderName, index) => {
-            // Obtener la URL correspondiente al índice actual
-            const url = contacts[index].url;
-    
-            // Obtener la descripción correspondiente al índice actual
-            const description = contacts[index].description;
-            
-            // Obtener el objeto cilindro por su nombre
-            const cylinder = scene.getMeshByName(cylinderName);
-            
-            // Agregar un evento de clic al cilindro
-            cylinder.actionManager = new BABYLON.ActionManager(scene);
-            cylinder.actionManager.registerAction(
-              new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, async () => {
-                try {
-                  const fontResponse = await fetch("./fonts/kenney.json");
-                  if (!fontResponse.ok) {
-                    throw new Error("Error al cargar el archivo JSON");
-                  }
-                  const fontData = await fontResponse.json();
-                  
-                  // Eliminar el texto actual si existe
-                  if (currentText) {
-                    currentText.dispose();
-                  }
-                  
-                  // Crear el texto con la descripción seleccionada
-                  const text = BABYLON.MeshBuilder.CreateText(
-                    "ContactsDesc",
-                    description,
-                    fontData,
-                    {
-                      size: 14,
-                      resolution: 256,
-                      depth: 5,
-                    },
-                    scene,
-                    earcut
-                  );
-                  const text2 = BABYLON.MeshBuilder.CreateText(
-                    "ContactsLink",
-                    "¡Haz click!",
-                    fontData,
-                    {
-                      size: 14,
-                      resolution: 256,
-                      depth: 5,
-                    },
-                    scene,
-                    earcut
-                  );
- 
-                  text2.position = new BABYLON.Vector3(2, -135, 42);
-                  text2.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-                  text.position = new BABYLON.Vector3(2, -110, 42);
-                  text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-                  const redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
-                  redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
-                  text.material = redMaterial;
-                  text2.material = redMaterial;
-    
-                  if (currentLink) {
-                    currentLink.dispose();
-                  }
-                  // Asignar el nuevo texto a la variable currentText
-                  currentText = text;
-                  currentLink = text2;
-    
-                  // Agregar un evento de clic al texto2 para abrir la URL
-                  text2.actionManager = new BABYLON.ActionManager(scene);
-                  text2.actionManager.registerAction(
-                    new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                      window.open(url, "_blank");
-                    })
-                  );
-    
-                  text.actionManager = new BABYLON.ActionManager(scene);
-                  text.actionManager.registerAction(
-                    new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                      window.open(url, "_blank");
-                    })
-                  );
-                } catch (error) {
-                  console.error("Error:", error);
-                }
-              })
-            );
-          });
-        } else {
-          console.error("Error al obtener los datos:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud:", error);
-      });
-    
-
-
-      axios.get("http://localhost:3000/getworks")
-  .then((response) => {
-    // Verificar si la solicitud fue exitosa
-    if (response.status === 200) {
-      // Extraer los datos de la respuesta
-      const works = response.data;
-
-      // Definir los nombres de los cilindros
-      const cylinderNames = ["cylinder_4", "cylinder_23", "cylinder_16"];
-
-      // Iterar sobre los nombres de los cilindros
-      cylinderNames.forEach((cylinderName, index) => {
-        // Obtener la URL de la imagen correspondiente al índice actual
-        const imageUrl = works[index].image;
-
-        // Crear una textura utilizando la URL de la imagen
-        const texture = new BABYLON.Texture(imageUrl, scene);
-
-        // Crear un material con la textura
-        const material = new BABYLON.StandardMaterial(`workMaterial_${index}`, scene);
-        material.diffuseTexture = texture;
-
-        // Obtener el objeto cilindro por su nombre
-        const object = scene.getMeshByName(cylinderName);
-
-        // Aplicar el material al objeto cilindro
-        object.material = material;
-      });
-    } else {
-      console.error("Error al obtener los datos:", response.statusText);
-    }
-  })
-  .catch((error) => {
-    console.error("Error al realizar la solicitud:", error);
-  });
-
-  axios.get("http://localhost:3000/getworks")
-  .then((response) => {
-    // Verificar si la solicitud fue exitosa
-    if (response.status === 200) {
-      // Extraer los datos de la respuesta
-      const works = response.data;
-
-      // Definir los nombres de los cilindros
-      const cylinderNames = ["cylinder_4", "cylinder_23", "cylinder_16"];
-
-      // Iterar sobre los nombres de los cilindros
-      cylinderNames.forEach((cylinderName, index) => {
-        // Obtener la URL correspondiente al índice actual
-        const url = works[index].url;
-
-        // Obtener la descripción correspondiente al índice actual
-        const description = works[index].description;
-        
-        // Obtener el objeto cilindro por su nombre
-        const cylinder = scene.getMeshByName(cylinderName);
-        
-        // Agregar un evento de clic al cilindro
-        cylinder.actionManager = new BABYLON.ActionManager(scene);
-        cylinder.actionManager.registerAction(
-          new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, async () => {
-           
-            try {
-              const fontResponse = await fetch("./fonts/kenney.json");
-              if (!fontResponse.ok) {
-                throw new Error("Error al cargar el archivo JSON");
-              }
-              const fontData = await fontResponse.json();
-              
-              // Eliminar el texto actual si existe
-              if (currentText) {
-                currentText.dispose();
-              }
-              
-              // Crear el texto con la descripción seleccionada
-              const text = BABYLON.MeshBuilder.CreateText(
-                "WorksDesc",
-                description,
-                fontData,
-                {
-                  size: 14,
-                  resolution: 256,
-                  depth: 5,
-                },
-                scene,
-                earcut
-              );
-              const text2 = BABYLON.MeshBuilder.CreateText(
-                "WorksLink",
-                "¡Ven conmigo!",
-                fontData,
-                {
-                  size: 14,
-                  resolution: 256,
-                  depth: 5,
-                },
-                scene,
-                earcut
-              );
-              text2.position = new BABYLON.Vector3(2, -135, 42);
-              text2.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-              text.position = new BABYLON.Vector3(2, -110, 42);
-              text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-              const redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
-              redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
-              text.material = redMaterial;
-              text2.material = redMaterial;
-
-              if (currentLink) {
-                currentLink.dispose();
-              }
-              // Asignar el nuevo texto a la variable currentText
-              currentText = text;
-              currentLink = text2;
-
-              // Agregar un evento de clic al texto2 para abrir la URL
-              text2.actionManager = new BABYLON.ActionManager(scene);
-              text2.actionManager.registerAction(
-                new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                  window.open(url, "_blank");
-                })
-              );
-
-              text.actionManager = new BABYLON.ActionManager(scene);
-              text.actionManager.registerAction(
-                new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-                  window.open(url, "_blank");
-                })
-              );
-            } catch (error) {
-              console.error("Error:", error);
-            }
-          })
-        );
-      });
-    } else {
-      console.error("Error al obtener los datos:", response.statusText);
-    }
-  })
-  .catch((error) => {
-    console.error("Error al realizar la solicitud:", error);
-  });
-
-
+      };
 
       const createTextWithFont = async () => {
         try {
-          let previousText; 
-      
-          const response = await axios.get("http://localhost:3000/getphilosofies");
-          const descriptions = response.data.map(item => item.description);
-      
+          let previousText;
+
+          const response = await axios.get(
+            "http://localhost:3000/getphilosofies"
+          );
+          const descriptions = response.data.map((item) => item.description);
+
           const fontResponse = await fetch("./fonts/kenney.json");
           if (!fontResponse.ok) {
             throw new Error("Error al cargar el archivo JSON");
           }
           const fontData = await fontResponse.json();
-      
+
           // Función para actualizar el texto con una descripción aleatoria
           const updateTextWithRandomDescription = () => {
             // Seleccionar una descripción aleatoria
             const randomIndex = Math.floor(Math.random() * descriptions.length);
             const randomDescription = descriptions[randomIndex];
-      
+
             // Eliminar el texto anterior si existe
             if (previousText) {
               previousText.dispose();
             }
-      
+
             // Crear el texto con la descripción seleccionada
             const text = BABYLON.MeshBuilder.CreateText(
               "myText",
@@ -871,33 +1067,32 @@ axios.get("http://localhost:3000/getlanguages")
               scene,
               earcut
             );
-            text.position = new BABYLON.Vector3(2, 72, 42);
+            text.position = new BABYLON.Vector3(2, 72, -55);
             text.rotation = new BABYLON.Vector3(-0.22, 0, 0);
-            const redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
-            redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            const redMaterial = new BABYLON.StandardMaterial(
+              "redMaterial",
+              scene
+            );
+            redMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.5, 1);
 
-           
-        
             text.material = redMaterial;
 
             // Almacenar el texto actual en la variable previousText
             previousText = text;
-            
           };
-      
+
           // Llamar a la función inicialmente
           updateTextWithRandomDescription();
-      
+
           // Establecer un intervalo para actualizar el texto cada 5 segundos
           setInterval(updateTextWithRandomDescription, 8000);
         } catch (error) {
           console.error("Error:", error);
         }
       };
-      
+
       createTextWithFont();
-      
-      
+
       return scene;
     };
 
@@ -936,21 +1131,27 @@ axios.get("http://localhost:3000/getlanguages")
     if (!xrEnabled && scene) {
       // Verificar si el dispositivo es compatible con WebXR
       if (navigator.xr && navigator.xr.isSessionSupported) {
-        navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
-          if (supported) {
-            // Crear la experiencia de XR si es compatible
-            scene.createDefaultXRExperienceAsync({}).then((xrExperience) => {
-              xrExperience.input.onControllerAddedObservable.add(() => {
-                // Manejar eventos de controladores de mano aquí
+        navigator.xr
+          .isSessionSupported("immersive-vr")
+          .then((supported) => {
+            if (supported) {
+              // Crear la experiencia de XR si es compatible
+              scene.createDefaultXRExperienceAsync({}).then((xrExperience) => {
+                xrExperience.input.onControllerAddedObservable.add(() => {
+                  // Manejar eventos de controladores de mano aquí
+                });
               });
-            });
-          } else {
-            // El dispositivo no es compatible con VR
-            console.log("Este dispositivo no es compatible con VR");
-          }
-        }).catch((error) => {
-          console.error("Error al verificar la compatibilidad con VR:", error);
-        });
+            } else {
+              // El dispositivo no es compatible con VR
+              console.log("Este dispositivo no es compatible con VR");
+            }
+          })
+          .catch((error) => {
+            console.error(
+              "Error al verificar la compatibilidad con VR:",
+              error
+            );
+          });
       } else {
         // El navegador no admite WebXR
         console.log("Tu navegador no admite WebXR");
@@ -962,19 +1163,15 @@ axios.get("http://localhost:3000/getlanguages")
     }
     setXrEnabled(!xrEnabled);
   };
-  
+
   return (
     <div>
       <canvas id="renderCanvas" />
-      <button onClick={toggleXR}>
+      {/* <button onClick={toggleXR}>
         {xrEnabled ? "Desactivar VR" : "Activar VR"}
-      </button>
+      </button> */}
     </div>
   );
 };
 
 export default App;
-
-
-
-
