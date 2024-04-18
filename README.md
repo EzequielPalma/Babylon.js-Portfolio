@@ -59,6 +59,8 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 ![Captura de pantalla 1](zoo/public/2.png)
 ![Captura de pantalla 2](zoo/public/3.png)
 ![Captura de pantalla 2](zoo/public/4.png)
+![Captura de pantalla 2](zoo/public/5.png)
+
 
 
 ## Contribuciones
