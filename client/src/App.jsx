@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import * as BABYLON from "@babylonjs/core";
 import "./App.css";
 import "@babylonjs/loaders/glTF";
-import { Inspector } from "@babylonjs/inspector";
+// import { Inspector } from "@babylonjs/inspector";
 import earcut from "earcut";
 import "@babylonjs/materials";
 import axios from "axios";
@@ -12,31 +12,26 @@ const App = () => {
   const [xrEnabled, setXrEnabled] = useState(false);
 
   useEffect(() => {
-    // Obtener el canvas
     const canvas = document.getElementById("renderCanvas");
-    // Crear el motor de renderizado
     const engine = new BABYLON.Engine(canvas, true);
-    // Crear la escena
     const createScene = () => {
       const scene = new BABYLON.Scene(engine);
       // Inspector.Show(scene, {});
 
-      // Crear una cámara
       const camera = new BABYLON.ArcRotateCamera(
         "camera",
-        4.6882, // Alfa (alpha)
-        1.6716, // Beta
-        433.3218, // Radio
+        4.6882, 
+        1.6716, 
+        433.3218, 
         BABYLON.Vector3.Zero(),
         scene
       );
       camera.attachControl(canvas, true);
 
-      // Crear una luz
       const light = new BABYLON.HemisphericLight(
         "light",
         new BABYLON.Vector3(0, 1, 0),
-        scene
+        scene        
       );
 
       const redLight = new BABYLON.PointLight(
