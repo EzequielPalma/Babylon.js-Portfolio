@@ -11,7 +11,7 @@ La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcion
 
 Actualmente se puede consultar en web y en las meta quest, aunque faltaría, además de desplegar el back, algun codigo referente a XR para que sea totalmente similar al funcionamiento en WEB.
 
-No pude avanzar mas en este proyecto porque lo comencé algo tarde pero me ha gustado explorar una nueva tecnologia de inmersivas WEB como lo es Babylon.js.
+No pude avanzar mas en este proyecto porque lo comencé algo tarde, pero me ha gustado explorar una nueva tecnologia de inmersivas WEB como lo es Babylon.js.
 De todas formas, me ha gustado mucho experimentar y creo que es una idea bastante original para un portfolio, aunque queda mucho por pulir e intentaré ir puliendo poco a poco en mis tiempos libres. 
 
 El objetivo final sería crear un boilerplate para que otras personas pudieran tener de guía o utilizarlo para enseñar sus trabajos.
