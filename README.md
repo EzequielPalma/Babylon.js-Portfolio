@@ -1,4 +1,4 @@
-<img src="zoo/public/1.png" alt="Descripción de la imagen" width="400"/>
+<img src="client/public/1.png" alt="Descripción de la imagen" width="400"/>
 *Figura 1: Logo del proyecto*
 
 
@@ -56,10 +56,10 @@ El objetivo final sería crear un boilerplate para que otras personas pudieran t
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](zoo/public/2.png)
-![Captura de pantalla 2](zoo/public/3.png)
-![Captura de pantalla 3](zoo/public/4.png)
-![Captura de pantalla 4](zoo/public/5.png)
+![Captura de pantalla 1](client/public/2.png)
+![Captura de pantalla 2](client/public/3.png)
+![Captura de pantalla 3](client/public/4.png)
+![Captura de pantalla 4](client/public/5.png)
 
 
 
