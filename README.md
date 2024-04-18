@@ -1,5 +1,4 @@
 <img src="client/public/1.png" alt="Descripción de la imagen" width="400"/>
-*Figura 1: Logo del proyecto*
 
 
 
