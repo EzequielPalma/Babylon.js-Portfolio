@@ -3,38 +3,52 @@
 
 
 
-# Portfolio
+# Portfolio inmersivo y descripción
 
-Este proyecto fue creado con `create-react-app` y utiliza la API de Rick y Morty para mostrar información sobre los personajes de la serie.
+Este proyecto fue creado el dia 15-04-24 con `vite-react` y `node-express` y muestra las tecnologías que domino, las formas de contactar conmigo y los proyectos que he realizado.
 
-## Descripción
+La idea es seguir evolucionando el proyecto e ir incorporando diferentes funcionalidades que veremos mas adelante en el todo.
 
-El objetivo de este proyecto es explorar el uso de React y la integración con una API externa para mostrar información relevante sobre los personajes de Rick y Morty.
+Actualmente se puede consultar en web y en las meta quest, aunque faltaría, además de desplegar el back, algun codigo referente a XR para que sea totalmente similar al funcionamiento en WEB.
 
-## Funcionalidades
 
-- **Búsqueda de Personajes:** Utiliza un componente de búsqueda para filtrar los personajes por nombre.
-- **Filtrado por Estado:** Permite filtrar los personajes por su estado (vivo, muerto, desconocido).
-- **Paginación:** Muestra los resultados paginados para facilitar la navegación.
+## TODO
+- ✅ Mobile device.
+- ✅ Apto para VR
+- ✅ Arc rotate camera y movimiento de la figura independientemente de la cámara.
+- ✅ Axios get al back.
+- ✅ Test del front con Cypress
+- ❌ Cambiar la cámara a la VR Arc Rotate Camera.
+- ❌ Que la figura gire en VR, ya que solo gira en WEB y en móvil.
+- ❌ Havok Physics engine.
+- ❌ Mejorar el diseño.
+- ❌ Terminar los tests del back.
+- ❌ Atomic Design.
+
 
 ## Tecnologías Utilizadas
 
-- React
-- Bootstrap para el estilo y componentes
-- React Router para la navegación entre páginas
+- Vite React
+- Node Express js
+- Babylon js
+- Axios
+- Cypress
+- Vitest
+- Mongoose
+- Cors
 
 ## Instrucciones de Uso
 
 1. Clona este repositorio.
-2. Ejecuta `npm install` para instalar las dependencias.
-3. Ejecuta `npm install react-bootstrap bootstrap` para instalar bootstrap.
-4. Ejecuta `npm install react-router-dom` para instalar las dependencias de React-Router.
-5. Ejecuta `npm start` para iniciar la aplicación en modo desarrollo.
+2. Ejecuta `npm install` para instalar las dependencias en el lado del servidor y del cliente, en ambos..
+3. Ejecuta `nodemon src/index.js` para ejecutar el servidor.
+4. Ejecuta `npm run dev` para ejecutar el lado del cliente.
+
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](public/captura1.png)
-![Captura de pantalla 2](public/captura2.png)
+![Captura de pantalla 1](public/2.png)
+![Captura de pantalla 2](public/3.png)
 
 En estas capturas podemos ver que tiene un diseño responsive en ambas páginas del proyecto.
 
@@ -43,7 +57,7 @@ En estas capturas podemos ver que tiene un diseño responsive en ambas páginas 
 Las contribuciones son bienvenidas. Si encuentras algún error o tienes una mejora, ¡siéntete libre de abrir un problema o enviar un pull request!
 
 ## Estado del Proyecto
-![Mínimo producto viable](https://img.shields.io/badge/MVP-%20Completado-green)
+![Mínimo producto viable](https://img.shields.io/badge/MVP-%2050%-green)
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
 
 ## Licencia
